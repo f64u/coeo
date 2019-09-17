@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './screen/HomeScreen.dart';
+import './screens/HomeScreen.dart';
 
-import './modal/voulnteerModal.dart';
-import './screen/LoginPage.dart';
+import './models/VolunteerModel.dart';
+import './screens/LoginPage.dart';
 
 void main() => runApp(SaveMyLife());
 
@@ -17,7 +17,7 @@ class SaveMyLife extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Save My Life',
+        title: 'Coeo',
         showSemanticsDebugger: false,
         debugShowMaterialGrid: false,
         debugShowCheckedModeBanner: false,
