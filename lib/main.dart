@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import './models/VolunteerModel.dart';
 import './router.dart';
 
-void main() => runApp(SaveMyLife());
+void main() => runApp(CoeoApp());
 
-class SaveMyLife extends StatelessWidget {
+class CoeoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
