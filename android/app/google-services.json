@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "60564498472",
+    "firebase_url": "https://coeo-ea3c7.firebaseio.com",
+    "project_id": "coeo-ea3c7",
+    "storage_bucket": "coeo-ea3c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60564498472:android:366df92fd20ee23cf1ed1d",
+        "android_client_info": {
+          "package_name": "com.faddyy.coeo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "60564498472-3490auijc3p4os05okbl3ulakiob04fs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.faddyy.coeo",
+            "certificate_hash": "bb9924a68d9cfd5b50dabd431818ec0ccd63e7b7"
+          }
+        },
+        {
+          "client_id": "60564498472-j7tie710f3ufo0onqcp2qtrt8s39ik1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_dwN3hp9YCfq5fMlLKdbkczcyRwlVcG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "60564498472-j7tie710f3ufo0onqcp2qtrt8s39ik1i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
