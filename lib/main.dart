@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './screens/HomeScreen.dart';
 
 import './models/VolunteerModel.dart';
-import './screens/LoginPage.dart';
+import './router.dart';
 
 void main() => runApp(SaveMyLife());
 
@@ -22,8 +21,8 @@ class SaveMyLife extends StatelessWidget {
         debugShowMaterialGrid: false,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.deepPurple),
-        home: LoginPage(),
-        routes: {"/home-screen": (ctx) => MainScreen()},
+        initialRoute: '/',
+        onGenerateRoute: Router.generateRoute,
       ),
     );
   }
