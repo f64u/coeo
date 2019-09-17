@@ -8,13 +8,13 @@ class Post {
   final LatLng location;
   final List<Volunteer> responders;
   final List<Volunteer> viewed;
-  final String videoUrl;
+  final String imageUrl;
 
   Post(
       {@required this.title,
-      @required this.description,
+      this.description,
       @required this.location,
       @required this.responders,
       @required this.viewed,
-      @required this.videoUrl});
+      this.imageUrl});
 }

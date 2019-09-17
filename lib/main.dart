@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './models/VolunteerModel.dart';
 import './router.dart';
 
 void main() => runApp(CoeoApp());
@@ -10,11 +9,7 @@ class CoeoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider.value(
-          value: VolunteerProviders(),
-        )
-      ],
+      providers: [],
       child: MaterialApp(
         title: 'Coeo',
         showSemanticsDebugger: false,
