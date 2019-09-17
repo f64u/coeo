@@ -1,33 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Volunteer {
-  String name;
-  String id;
-  String phoneNumber;
-  int age;
-  String type;
-  String skills;
-  String experience;
-  int avaliableHours;
-  String imageUrl;
+  final String name;
+  final String id;
+  final String phoneNumber;
+  final int age;
+  final String type;
+  final List<String> skills;
+  final int avaliableHours;
+  final String imageUrl;
   static const String medical = "Medical";
   static const String educational = "Educational";
   static const String regular = "Regular";
 
-  Volunteer(
-      {@required this.name,
-      @required this.age,
-      @required this.imageUrl,
-      this.id,
-      @required this.phoneNumber,
-      @required this.avaliableHours,
-      this.experience,
-      this.skills,
-      @required this.type});
-}
-
-class VolunteerProviders with ChangeNotifier {
-  List<Volunteer> _volunteerList = [
+  static const List<Volunteer> _volunteerList = const [
     Volunteer(
         name: "Sara Shaker",
         age: 26,
@@ -35,8 +21,7 @@ class VolunteerProviders with ChangeNotifier {
             'https://thumbs.dreamstime.com/z/studio-portrait-woman-wearing-volunteer-t-shirt-looking-camera-44158547.jpg',
         phoneNumber: '+201*********',
         avaliableHours: 10,
-        experience: '',
-        skills: '',
+        skills: [],
         type: Volunteer.educational),
     Volunteer(
         name: "Abdullah Gamal",
@@ -45,8 +30,7 @@ class VolunteerProviders with ChangeNotifier {
             'https://www.vsointernational.org/sites/default/files/styles/wysiwyg_default/public/ICS%20volunteer%20Ibraham%20Kamara%20Sierra%20Leone%20ebola.jpg?itok=JdTU_3c4',
         phoneNumber: '+201*********',
         avaliableHours: 5,
-        experience: '',
-        skills: '',
+        skills: [],
         type: Volunteer.medical),
     Volunteer(
         name: "Hager atef",
@@ -55,18 +39,17 @@ class VolunteerProviders with ChangeNotifier {
             'https://thumbs.dreamstime.com/z/portrait-smiling-young-female-volunteer-holding-clipboard-over-white-background-37372789.jpg',
         phoneNumber: '+201*********',
         avaliableHours: 8,
-        experience: '',
-        skills: '',
+        skills: [],
         type: Volunteer.regular),
   ];
 
-  List<Volunteer> get volunteers {
-    return [..._volunteerList];
-  }
-
-  void addVolunteer(Volunteer volunteer) {
-    volunteer.id = DateTime.now().toString();
-    _volunteerList.add(volunteer);
-    notifyListeners();
-  }
+  const Volunteer(
+      {@required this.name,
+      @required this.age,
+      @required this.imageUrl,
+      this.id,
+      @required this.phoneNumber,
+      @required this.avaliableHours,
+      this.skills,
+      @required this.type});
 }
