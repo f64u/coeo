@@ -16,7 +16,7 @@ class CoeoApp extends StatelessWidget {
         debugShowMaterialGrid: false,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.deepPurple),
-        initialRoute: '/',
+        initialRoute: '/login',
         onGenerateRoute: Router.generateRoute,
       ),
     );

@@ -53,16 +53,6 @@ class VolunteerWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Icon(Icons.work),
-                      SizedBox(
-                        width: 3,
-                      ),
-                      Text(volunteer.type)
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
                       Icon(Icons.access_time),
                       SizedBox(
                         width: 3,
