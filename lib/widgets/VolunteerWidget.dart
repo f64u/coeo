@@ -58,7 +58,7 @@ class VolunteerWidget extends StatelessWidget {
                         width: 3,
                       ),
                       FittedBox(
-                        child: Text('${volunteer.avaliableHours}h'),
+                        child: Text('${volunteer.availableHours}h'),
                       )
                     ],
                   ),
