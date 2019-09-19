@@ -10,6 +10,7 @@ class Volunteer {
   final List<String> skills;
   final int availableHours;
   final String imageUrl;
+  final int points;
 
   Volunteer(
       {@required this.uid,
@@ -19,6 +20,7 @@ class Volunteer {
       @required this.phoneNumber,
       @required this.availableHours,
       @required this.skills,
+      this.points = 0,
       submitToFirebase = false}) {
     if (submitToFirebase) {
       Firestore.instance.collection("volunteers").document(uid).setData({
@@ -29,6 +31,7 @@ class Volunteer {
         "phoneNumber": phoneNumber,
         "availableHours": availableHours,
         "skills": skills,
+        "points": points,
       });
     }
   }
@@ -40,7 +43,8 @@ class Volunteer {
         imageUrl = json["imageUrl"],
         phoneNumber = json["phoneNumber"],
         availableHours = json["availableHours"],
-        skills = json["skills"];
+        skills = json["skills"] ?? [],
+        points = json["points"] ?? 0;
 
   static Future<Volunteer> ofUser(Future<FirebaseUser> user) async {
     var uid = (await user).uid;

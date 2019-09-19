@@ -1,4 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:coeo/models/VolunteerModel.dart';
+import 'package:coeo/widgets/OurAppBar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -51,36 +54,47 @@ class MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Save My Life"),
-        primary: true,
-      ),
-      bottomNavigationBar: BottomNavyBar(
-        showElevation: true,
-        selectedIndex: bottomNavyIndex,
-        items: NavyItem,
-        onItemSelected: (index) {
-          bottomNavyIndex = index;
-          pageController.animateToPage(index,
-              duration: Duration(milliseconds: 300), curve: Curves.easeIn);
-        },
-      ),
-      body: PageView(
-        children: <Widget>[
-          HomePage(),
-          UserPage(),
-          MessagePage(),
-          SettingPage()
-        ],
-        onPageChanged: (index) {
-          setState(() {
-            bottomNavyIndex = index;
-          });
-        },
-        controller: pageController,
-      ),
-    );
+    return FutureBuilder(
+        future: Volunteer.ofUser(FirebaseAuth.instance.currentUser()),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var vol = snapshot.data;
+            return Scaffold(
+              appBar: OurAppBar(volunteer: vol, onFilter: () {}),
+              bottomNavigationBar: BottomNavyBar(
+                showElevation: true,
+                selectedIndex: bottomNavyIndex,
+                items: NavyItem,
+                onItemSelected: (index) {
+                  bottomNavyIndex = index;
+                  pageController.animateToPage(index,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeIn);
+                },
+              ),
+              body: PageView(
+                children: <Widget>[
+                  HomePage(),
+                  UserPage(),
+                  MessagePage(),
+                  SettingPage()
+                ],
+                onPageChanged: (index) {
+                  setState(() {
+                    bottomNavyIndex = index;
+                  });
+                },
+                controller: pageController,
+              ),
+            );
+          } else {
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        });
   }
 }
 

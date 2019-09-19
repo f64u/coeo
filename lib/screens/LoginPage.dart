@@ -158,190 +158,195 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: <Widget>[
             LoginAppBar(),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.65,
-              width: MediaQuery.of(context).size.width,
-              child: Container(
-                margin: EdgeInsets.fromLTRB(20, 12, 20, 10),
-                child: Form(
-                  key: _formKey,
-                  autovalidate: _autoValidate,
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        validator: validateEmail,
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _emailController,
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Email",
-                          contentPadding: new EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).size.height * 0.022,
-                              horizontal: 15.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                          ),
-                        ),
-                        onFieldSubmitted: (String value) {
-                          FocusScope.of(context).requestFocus(myFocusNode);
-                        },
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        validator: validatePassword,
-                        controller: _passwordController,
-                        focusNode: myFocusNode,
-                        obscureText: true,
-                        keyboardType: TextInputType.text,
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                        textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
-                          labelText: "Password",
-                          contentPadding: new EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).size.height * 0.022,
-                              horizontal: 15.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 20),
-                        child: Row(
-                          children: <Widget>[
-                            Checkbox(
-                              activeColor: Colors.deepPurpleAccent,
-                              value: _value1,
-                              onChanged: _value1Changed,
+            Builder(
+              builder: (context) => Container(
+                height: MediaQuery.of(context).size.height * 0.65,
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(20, 12, 20, 10),
+                  child: Form(
+                    key: _formKey,
+                    autovalidate: _autoValidate,
+                    child: Column(
+                      children: <Widget>[
+                        TextFormField(
+                          validator: validateEmail,
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            labelText: "Email",
+                            contentPadding: new EdgeInsets.symmetric(
+                                vertical:
+                                    MediaQuery.of(context).size.height * 0.022,
+                                horizontal: 15.0),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25)),
                             ),
-                            Text(
-                              "Remember Me",
-                              style: TextStyle(
-                                  color: Colors.deepPurpleAccent,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
+                          ),
+                          onFieldSubmitted: (String value) {
+                            FocusScope.of(context).requestFocus(myFocusNode);
+                          },
                         ),
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Container(
-                        child: GestureDetector(
-                            onTap: () async {
-                              _validateInputs();
-                              Scaffold.of(context).showSnackBar(SnackBar(
-                                content: Text("Processing..."),
-                              ));
-                              _validateInputs();
-
-                              try {
-                                await FirebaseAuth.instance
-                                    .signInWithEmailAndPassword(
-                                        email: _emailController.text,
-                                        password: _passwordController.text);
-                                Scaffold.of(context).showSnackBar(SnackBar(
-                                  content: Text("Successfully logged in!"),
-                                ));
-                                Navigator.pushReplacementNamed(
-                                    context, "/home");
-                              } on PlatformException catch (e) {
-                                Scaffold.of(context).showSnackBar(
-                                    SnackBar(content: Text(errors[e.code])));
-                              }
-                            },
-                            child: Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.065,
-                              decoration: BoxDecoration(
-                                  color: Colors.deepPurpleAccent,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25))),
-                              child: Center(
-                                child: Text(
-                                  "SIGN IN",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
-                                ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          validator: validatePassword,
+                          controller: _passwordController,
+                          focusNode: myFocusNode,
+                          obscureText: true,
+                          keyboardType: TextInputType.text,
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          textInputAction: TextInputAction.done,
+                          decoration: InputDecoration(
+                            labelText: "Password",
+                            contentPadding: new EdgeInsets.symmetric(
+                                vertical:
+                                    MediaQuery.of(context).size.height * 0.022,
+                                horizontal: 15.0),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 20),
+                          child: Row(
+                            children: <Widget>[
+                              Checkbox(
+                                activeColor: Colors.deepPurpleAccent,
+                                value: _value1,
+                                onChanged: _value1Changed,
                               ),
-                            )),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Connect with",
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                print("Google");
+                              Text(
+                                "Remember Me",
+                                style: TextStyle(
+                                    color: Colors.deepPurpleAccent,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Container(
+                          child: GestureDetector(
+                              onTap: () async {
+                                _validateInputs();
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                  content: Text("Processing..."),
+                                ));
+                                _validateInputs();
+
+                                try {
+                                  await FirebaseAuth.instance
+                                      .signInWithEmailAndPassword(
+                                          email: _emailController.text,
+                                          password: _passwordController.text);
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                    content: Text("Successfully logged in!"),
+                                  ));
+                                  Navigator.pushReplacementNamed(
+                                      context, "/home");
+                                } on PlatformException catch (e) {
+                                  Scaffold.of(context).showSnackBar(
+                                      SnackBar(content: Text(errors[e.code])));
+                                }
                               },
                               child: Container(
-                                margin: EdgeInsets.only(left: 7),
                                 height:
                                     MediaQuery.of(context).size.height * 0.065,
-                                width:
-                                    MediaQuery.of(context).size.height * 0.065,
                                 decoration: BoxDecoration(
-                                    color: Colors.red, shape: BoxShape.circle),
-                                child: Icon(
-                                  FontAwesomeIcons.google,
-                                  color: Colors.white,
+                                    color: Colors.deepPurpleAccent,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25))),
+                                child: Center(
+                                  child: Text(
+                                    "SIGN IN",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
+                                  ),
+                                ),
+                              )),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "Connect with",
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  print("Google");
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 7),
+                                  height: MediaQuery.of(context).size.height *
+                                      0.065,
+                                  width: MediaQuery.of(context).size.height *
+                                      0.065,
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      shape: BoxShape.circle),
+                                  child: Icon(
+                                    FontAwesomeIcons.google,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                          margin: EdgeInsets.only(top: 10, bottom: 15),
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, '/signup');
-                            },
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    "New User?",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    "Signup",
-                                    style: TextStyle(
-                                        color: Colors.deepPurpleAccent,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16),
-                                  ),
-                                ],
+                        Container(
+                            margin: EdgeInsets.only(top: 10, bottom: 15),
+                            height: MediaQuery.of(context).size.height * 0.05,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushReplacementNamed(
+                                    context, '/signup');
+                              },
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      "New User?",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "Signup",
+                                      style: TextStyle(
+                                          color: Colors.deepPurpleAccent,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ))
-                    ],
+                            ))
+                      ],
+                    ),
                   ),
                 ),
               ),
